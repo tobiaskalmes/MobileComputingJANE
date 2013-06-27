@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE scripted_mobility SYSTEM "scripted_mobility.dtd">
+
+<scripted_mobility>
+
+	<node>
+		<address>0</address>
+		<sending_radius>50</sending_radius>
+		<position><x>10</x><y>10</y></position>
+		<mobility>
+			<move>
+				<start_time>10</start_time>
+				<end_time>20</end_time>
+				<new_position><x>20</x><y>20</y></new_position>
+			</move>
+		</mobility>
+	</node>
+
+	<node>
+		<address>1</address>
+		<sending_radius>50</sending_radius>
+		<position><x>30</x><y>20</y></position>
+		<mobility>
+			<move>
+				<start_time>11</start_time>
+				<end_time>19</end_time>
+				<new_position><x>2</x><y>30</y></new_position>
+			</move>
+		</mobility>
+	</node>
+
+	<node>
+		<address>2</address>
+		<sending_radius>50</sending_radius>
+		<position><x>130</x><y>120</y></position>
+		<mobility>
+			<move>
+				<start_time>15</start_time>
+				<end_time>25</end_time>
+				<new_position><x>20</x><y>90</y></new_position>
+			</move>
+		</mobility>
+	</node>
+
+</scripted_mobility>

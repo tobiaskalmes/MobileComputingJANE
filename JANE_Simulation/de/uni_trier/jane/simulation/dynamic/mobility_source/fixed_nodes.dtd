@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT address (#PCDATA)>
+
+<!ELEMENT fixed_nodes (node+)>
+
+<!ELEMENT node (address,position,sending_radius)>
+
+<!ELEMENT position (x,y)>
+
+<!ELEMENT sending_radius (#PCDATA)>
+
+<!ELEMENT x (#PCDATA)>
+
+<!ELEMENT y (#PCDATA)>
+

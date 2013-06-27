@@ -1,0 +1,56 @@
+<!-- the complete path net-->
+<!ELEMENT PATHNET_V2 (DEST|CROSS|PATH)*>
+<!ATTLIST PATHNET_V2
+    NAME ID #REQUIRED
+>
+
+<!-- a possible destination in the path net -->
+<!ELEMENT DEST (ROUTING)*>
+<!ATTLIST DEST
+    NAME ID #REQUIRED
+    DESCRIPTION CDATA #REQUIRED
+    X CDATA #REQUIRED
+    Y CDATA #REQUIRED
+    W CDATA #REQUIRED
+>
+
+<!-- a crosspoint in the path net -->
+<!ELEMENT CROSS (ROUTING)*>
+<!ATTLIST CROSS
+    NAME ID #REQUIRED
+    DESCRIPTION CDATA #REQUIRED
+    X CDATA #REQUIRED
+    Y CDATA #REQUIRED
+    W CDATA #REQUIRED
+>
+
+<!-- a path in the path net -->
+<!ELEMENT PATH (INNER)*>
+<!ATTLIST PATH
+    NAME ID #REQUIRED
+    DESCRIPTION CDATA #REQUIRED
+    FIRST IDREF #REQUIRED
+    LAST IDREF #REQUIRED
+>
+
+<!-- routing information to a destination -->
+<!ELEMENT ROUTING (BRANCH)+>
+<!ATTLIST ROUTING
+    DEST IDREF #REQUIRED
+>
+
+<!-- inner nodes of a path -->
+<!ELEMENT INNER EMPTY>
+<!ATTLIST INNER
+    X CDATA #REQUIRED
+    Y CDATA #REQUIRED
+    W CDATA #REQUIRED    
+>
+
+<!-- a branch in a routing table -->
+<!ELEMENT BRANCH EMPTY>
+<!ATTLIST BRANCH
+    PROB CDATA #REQUIRED
+    PATH IDREF #REQUIRED
+>
+

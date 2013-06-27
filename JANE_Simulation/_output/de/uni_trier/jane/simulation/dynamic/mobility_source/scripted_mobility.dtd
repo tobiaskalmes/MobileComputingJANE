@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT address (#PCDATA)>
+
+<!ELEMENT end_time (#PCDATA)>
+
+<!ELEMENT mobility (move+)>
+
+<!ELEMENT move (start_time,end_time,new_position)>
+
+<!ELEMENT new_position (x,y)>
+
+<!ELEMENT node (address,sending_radius,position,mobility?)>
+
+<!ELEMENT position (x,y)>
+
+<!ELEMENT scripted_mobility (node+)>
+
+<!ELEMENT sending_radius (#PCDATA)>
+
+<!ELEMENT start_time (#PCDATA)>
+
+<!ELEMENT x (#PCDATA)>
+
+<!ELEMENT y (#PCDATA)>
+

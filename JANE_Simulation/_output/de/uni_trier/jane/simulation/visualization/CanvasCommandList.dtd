@@ -1,0 +1,22 @@
+<!ELEMENT canvasCommandList (drawLine|drawRectangle|drawEllipse|drawText|drawImage)*>
+
+<!ELEMENT drawLine (position,position,color)>
+<!ELEMENT drawRectangle (rectangle,color,boolean)>
+<!ELEMENT drawEllipse (rectangle,color,boolean)>
+<!ELEMENT drawText (string,rectangle,color)>
+<!ELEMENT drawImage (string,rectangle)>
+
+<!ELEMENT rectangle (position,position)>
+
+<!ELEMENT boolean (#PCDATA)>
+
+<!ELEMENT string (#PCDATA)>
+
+<!ELEMENT position (x,y)>
+<!ELEMENT x (#PCDATA)>
+<!ELEMENT y (#PCDATA)>
+
+<!ELEMENT color (r,g,b)>
+<!ELEMENT r (#PCDATA)>
+<!ELEMENT g (#PCDATA)>
+<!ELEMENT b (#PCDATA)>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/JANE_Base/JANE_Base.iml" filepath="$PROJECT_DIR$/JANE_Base/JANE_Base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JANE_DebugService/JANE_DebugService.iml" filepath="$PROJECT_DIR$/JANE_DebugService/JANE_DebugService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JANE_Hybrid/JANE_Hybrid.iml" filepath="$PROJECT_DIR$/JANE_Hybrid/JANE_Hybrid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JANE_Platform/JANE_Platform.iml" filepath="$PROJECT_DIR$/JANE_Platform/JANE_Platform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JANE_PlatformServices/JANE_PlatformServices.iml" filepath="$PROJECT_DIR$/JANE_PlatformServices/JANE_PlatformServices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JANE_RuntimeServices/JANE_RuntimeServices.iml" filepath="$PROJECT_DIR$/JANE_RuntimeServices/JANE_RuntimeServices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JANE_Services/JANE_Services.iml" filepath="$PROJECT_DIR$/JANE_Services/JANE_Services.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JANE_Simulation/JANE_Simulation.iml" filepath="$PROJECT_DIR$/JANE_Simulation/JANE_Simulation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JANE_SimulationServices/JANE_SimulationServices.iml" filepath="$PROJECT_DIR$/JANE_SimulationServices/JANE_SimulationServices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JANE_Tools/JANE_Tools.iml" filepath="$PROJECT_DIR$/JANE_Tools/JANE_Tools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Jane/Jane.iml" filepath="$PROJECT_DIR$/Jane/Jane.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JaneHTW/JaneHTW.iml" filepath="$PROJECT_DIR$/JaneHTW/JaneHTW.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JaneTwoHop/JaneTwoHop.iml" filepath="$PROJECT_DIR$/JaneTwoHop/JaneTwoHop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RemoteSystemsTempFiles/RemoteSystemsTempFiles.iml" filepath="$PROJECT_DIR$/RemoteSystemsTempFiles/RemoteSystemsTempFiles.iml" />
+    </modules>
+  </component>
+</project>
+

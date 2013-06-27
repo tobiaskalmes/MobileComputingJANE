@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="src" path="/JANE_Platform"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/JANE_Services"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/JANE_RuntimeServices"/>
+	<classpathentry exported="true" kind="lib" path="native_Linux/comm.jar">
+		<attributes>
+			<attribute value="JANE_PlatformServices/native_Linux" name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="jakarta-regexp-1.2.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

@@ -1,0 +1,15 @@
+//			// **************** JAVA 1.5 CODE BEGIN****************
+//	        // where does the debug message come from?
+//	        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+//	        // we have to reject some elements
+//	        //     stackTrace[0] -> Thread.dumpThreads
+//	        //     stackTrace[1] -> Thread.getStackTrace
+//	        //     stackTrace[2] -> Debug.log (the actual executing method)
+//	        // now comes the interesting method
+//	        StackTraceElement triggeringMethod = stackTrace[3];
+//	        // the full qualified class name
+//	        String fqcn = triggeringMethod.getClassName();
+//			methodName = triggeringMethod.getMethodName();
+//	        className = fqcn.substring(fqcn.lastIndexOf(".")+1);
+//	        packageName = fqcn.substring(0, fqcn.lastIndexOf("."));
+//			// **************** JAVA 1.5 CODE END ****************

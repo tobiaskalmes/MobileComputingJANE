@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="1142,1066" id="lu.uni.jane.service_start" metadata="uml2-1.0" initialized="true" scrolledX="28" tag="5" key="3230303530323232204A616E655365727669636544657669636541737369676E6D656E74">
+  <children xsi:type="editmodel:ClassEditModel" name="NormalDevices" location="591,467" size="138,121" id="lu.uni.jane.service_start.example/NormalDevices" packageIndication="1" runTimeClassModel="getShape(Lde.uni_trier.jane.basetypes.DeviceID;),NormalDevices(Lde.uni_trier.jane.simulation.SimulationParameters;I),initMobilitySource(Lde.uni_trier.jane.simulation.SimulationParameters;I),initServices(Lde.uni_trier.jane.service.unit.ServiceUnit;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="114,72">
+      <children xsi:type="editmodel:MethodEditModel" name="NormalDevices" id="lu.uni.jane.service_start.example/NormalDevices#NormalDevices(Lde.uni_trier.jane.simulation.SimulationParameters;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="initMobilitySource" id="lu.uni.jane.service_start.example/NormalDevices#initMobilitySource(Lde.uni_trier.jane.simulation.SimulationParameters;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="initServices" id="lu.uni.jane.service_start.example/NormalDevices#initServices(Lde.uni_trier.jane.service.unit.ServiceUnit;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getShape" id="lu.uni.jane.service_start.example/NormalDevices#getShape(Lde.uni_trier.jane.basetypes.DeviceID;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="lu.uni.jane.service_start/DeviceGroup&lt;-lu.uni.jane.service_start.example/NormalDevices" source="//@children.0" target="//@children.1/@sourceConnections.0" targetEnd="//@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="68,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" id="lu.uni.jane.service_start.example/NormalDevices->lu.uni.jane.service_start.example/DeviceGroupsExampleSimulation" source="//@children.0" target="//@children.7" targetEnd="//@children.0/@sourceConnections.1/@children.2" label="//@children.0/@sourceConnections.1/@children.0" sourceEnd="//@children.0/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«access»" size="49,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="52,121" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="198,193"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="1" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="SpecialDevices" location="400,467" size="140,103" id="lu.uni.jane.service_start.example/SpecialDevices" packageIndication="1" runTimeClassModel="SpecialDevices(Lde.uni_trier.jane.simulation.SimulationParameters;I),initServices(Lde.uni_trier.jane.service.unit.ServiceUnit;),initMobilitySource(Lde.uni_trier.jane.simulation.SimulationParameters;I)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="114,54">
+      <children xsi:type="editmodel:MethodEditModel" name="SpecialDevices" id="lu.uni.jane.service_start.example/SpecialDevices#SpecialDevices(Lde.uni_trier.jane.simulation.SimulationParameters;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="initMobilitySource" id="lu.uni.jane.service_start.example/SpecialDevices#initMobilitySource(Lde.uni_trier.jane.simulation.SimulationParameters;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="initServices" id="lu.uni.jane.service_start.example/SpecialDevices#initServices(Lde.uni_trier.jane.service.unit.ServiceUnit;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.0/@sourceConnections.0" autoLocated="true" id="lu.uni.jane.service_start/DeviceGroup&lt;-lu.uni.jane.service_start.example/SpecialDevices" source="//@children.1" target="//@children.2" targetEnd="//@children.1/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="69,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="94,229" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" id="lu.uni.jane.service_start.example/SpecialDevices->lu.uni.jane.service_start.example/DeviceGroupsExampleSimulation" source="//@children.1" target="//@children.7" targetEnd="//@children.1/@sourceConnections.1/@children.2" label="//@children.1/@sourceConnections.1/@children.0" sourceEnd="//@children.1/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«access»" size="49,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="71,103" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="219,193"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="1" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.5/@sourceConnections.1 //@children.1/@sourceConnections.0" name="DeviceGroup" location="480,166" size="189,229" id="lu.uni.jane.service_start/DeviceGroup" runTimeClassModel="getMobilitySource(),DeviceGroup(Lde.uni_trier.jane.simulation.SimulationParameters;I),mobilitySource,getTotalDeviceCount(),getShape(Lde.uni_trier.jane.basetypes.DeviceID;),getPosition(I),getPositionCount(),initMobilitySource(Lde.uni_trier.jane.simulation.SimulationParameters;I),addPosition(Lde.uni_trier.jane.basetypes.Position;),positions">
+    <children xsi:type="editmodel:CompartmentEditModel" size="166,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="mobilitySource" id="lu.uni.jane.service_start/DeviceGroup#mobilitySource"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="positions" id="lu.uni.jane.service_start/DeviceGroup#positions"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="130,144">
+      <children xsi:type="editmodel:MethodEditModel" name="DeviceGroup" location="12,81" id="lu.uni.jane.service_start/DeviceGroup#DeviceGroup(Lde.uni_trier.jane.simulation.SimulationParameters;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="initMobilitySource" id="lu.uni.jane.service_start/DeviceGroup#initMobilitySource(Lde.uni_trier.jane.simulation.SimulationParameters;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getShape" id="lu.uni.jane.service_start/DeviceGroup#getShape(Lde.uni_trier.jane.basetypes.DeviceID;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addPosition" id="lu.uni.jane.service_start/DeviceGroup#addPosition(Lde.uni_trier.jane.basetypes.Position;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPosition" id="lu.uni.jane.service_start/DeviceGroup#getPosition(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPositionCount" id="lu.uni.jane.service_start/DeviceGroup#getPositionCount()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getMobilitySource" id="lu.uni.jane.service_start/DeviceGroup#getMobilitySource()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTotalDeviceCount" id="lu.uni.jane.service_start/DeviceGroup#getTotalDeviceCount()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="de.uni_trier.jane.service.unit/ServiceFactory&lt;-lu.uni.jane.service_start/DeviceGroup" source="//@children.2" target="//@children.3" targetEnd="//@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.2/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="94,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="68,81"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.2/@sourceConnections.0 //@children.5/@sourceConnections.2 //@children.7/@sourceConnections.0" name="ServiceFactory" location="506,39" size="138,81" stereotype="interface" id="de.uni_trier.jane.service.unit/ServiceFactory" packageIndication="1" runTimeClassModel="initServices(Lde.uni_trier.jane.service.unit.ServiceUnit;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="87,18">
+      <children xsi:type="editmodel:MethodEditModel" name="initServices" id="de.uni_trier.jane.service.unit/ServiceFactory#initServices(Lde.uni_trier.jane.service.unit.ServiceUnit;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="1" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.5/@sourceConnections.0" name="ClickAndPlayMobilitySource" location="870,560" size="222,99" stereotype="interface" id="de.uni_trier.jane.simulation.dynamic.mobility_source/ClickAndPlayMobilitySource" packageIndication="1" runTimeClassModel="getAddress(Lde.uni_trier.jane.basetypes.Rectangle;),setPosition(Lde.uni_trier.jane.basetypes.DeviceID;Lde.uni_trier.jane.basetypes.Position;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="88,36">
+      <children xsi:type="editmodel:MethodEditModel" name="setPosition" id="de.uni_trier.jane.simulation.dynamic.mobility_source/ClickAndPlayMobilitySource#setPosition(Lde.uni_trier.jane.basetypes.DeviceID;Lde.uni_trier.jane.basetypes.Position;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAddress" id="de.uni_trier.jane.simulation.dynamic.mobility_source/ClickAndPlayMobilitySource#getAddress(Lde.uni_trier.jane.basetypes.Rectangle;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource&lt;-de.uni_trier.jane.simulation.dynamic.mobility_source/ClickAndPlayMobilitySource" source="//@children.4" target="//@children.6" targetEnd="//@children.4/@sourceConnections.0/@children.1" sourceEnd="//@children.4/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="111,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="82,481"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="1" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.7/@sourceConnections.2" name="DeviceGroupsMobilitySource" location="863,705" size="226,341" id="lu.uni.jane.service_start/DeviceGroupsMobilitySource" runTimeClassModel="hasNextEnterInfo(),getRectangle(),getTerminalCondition(Lde.uni_trier.jane.basetypes.Clock;),getServiceFactory(Lde.uni_trier.jane.basetypes.DeviceID;),getTotalDeviceCount(),DeviceGroupsMobilitySource(Lde.uni_trier.jane.simulation.SimulationParameters;Ljava.lang.String;),setPosition(Lde.uni_trier.jane.basetypes.DeviceID;Lde.uni_trier.jane.basetypes.Position;),getShape(),deviceCount,getNextArrivalInfo(Lde.uni_trier.jane.basetypes.DeviceID;),getNextEnterInfo(),lu.uni.jane.service_start.DeviceGroupsMobilitySource.AddressManagement,hasNextArrivalInfo(Lde.uni_trier.jane.basetypes.DeviceID;),lu.uni.jane.service_start.DeviceGroupsMobilitySource.Group,DeviceGroupsMobilitySource([Llu.uni.jane.service_start.DeviceGroup;),getAddress(Lde.uni_trier.jane.basetypes.Rectangle;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="97,18"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="170,234">
+      <children xsi:type="editmodel:MethodEditModel" name="init" id="lu.uni.jane.service_start/DeviceGroupsMobilitySource#init([Llu.uni.jane.service_start.DeviceGroup;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="DeviceGroupsMobilitySource" id="lu.uni.jane.service_start/DeviceGroupsMobilitySource#DeviceGroupsMobilitySource(Lde.uni_trier.jane.simulation.SimulationParameters;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getServiceFactory" id="lu.uni.jane.service_start/DeviceGroupsMobilitySource#getServiceFactory(Lde.uni_trier.jane.basetypes.DeviceID;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="184,444">
+      <children xsi:type="editmodel:ClassEditModel" name="Group" size="174,93" id="lu.uni.jane.service_start/DeviceGroupsMobilitySource$Group" runTimeClassModel="Group(Llu.uni.jane.service_start.DeviceGroup;),getMobilitySource(),getNextPosition(),hasNextPosition(),address,deviceGroup,getAddress(Lde.uni_trier.jane.basetypes.DeviceID;),nextPositionPointer">
+        <children xsi:type="editmodel:CompartmentEditModel" size="151,54">
+          <children xsi:type="editmodel:AttributeEditModel" name="deviceGroup" id="lu.uni.jane.service_start/DeviceGroupsMobilitySource$Group#deviceGroup"/>
+          <children xsi:type="editmodel:AttributeEditModel" name="address" id="lu.uni.jane.service_start/DeviceGroupsMobilitySource$Group#address"/>
+          <children xsi:type="editmodel:AttributeEditModel" name="nextPositionPointer" id="lu.uni.jane.service_start/DeviceGroupsMobilitySource$Group#nextPositionPointer"/>
+        </children>
+        <children xsi:type="editmodel:CompartmentEditModel" size="116,90"/>
+        <children xsi:type="editmodel:CompartmentEditModel"/>
+        <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true"/>
+      </children>
+      <children xsi:type="editmodel:ClassEditModel" name="AddressManagement" size="184,129" id="lu.uni.jane.service_start/DeviceGroupsMobilitySource$AddressManagement" runTimeClassModel="getMobilitySources(),getOriginalAddress(Lde.uni_trier.jane.basetypes.DeviceID;),hasNextEnterInfo(),enterInfoPointer,groups,getNextEnterInfo(),AddressManagement([Llu.uni.jane.service_start.DeviceGroup;),getDeviceGroup(Lde.uni_trier.jane.basetypes.DeviceID;),globalAddress,lastAssignedAddress,addressGroup">
+        <children xsi:type="editmodel:CompartmentEditModel" size="161,90">
+          <children xsi:type="editmodel:AttributeEditModel" name="enterInfoPointer" id="lu.uni.jane.service_start/DeviceGroupsMobilitySource$AddressManagement#enterInfoPointer"/>
+          <children xsi:type="editmodel:AttributeEditModel" name="lastAssignedAddress" id="lu.uni.jane.service_start/DeviceGroupsMobilitySource$AddressManagement#lastAssignedAddress"/>
+          <children xsi:type="editmodel:AttributeEditModel" name="groups" id="lu.uni.jane.service_start/DeviceGroupsMobilitySource$AddressManagement#groups"/>
+          <children xsi:type="editmodel:AttributeEditModel" name="globalAddress" id="lu.uni.jane.service_start/DeviceGroupsMobilitySource$AddressManagement#globalAddress"/>
+          <children xsi:type="editmodel:AttributeEditModel" name="addressGroup" id="lu.uni.jane.service_start/DeviceGroupsMobilitySource$AddressManagement#addressGroup"/>
+        </children>
+        <children xsi:type="editmodel:CompartmentEditModel" size="134,108"/>
+        <children xsi:type="editmodel:CompartmentEditModel"/>
+        <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true"/>
+      </children>
+    </children>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="de.uni_trier.jane.simulation.dynamic.mobility_source/ClickAndPlayMobilitySource&lt;-lu.uni.jane.service_start/DeviceGroupsMobilitySource" source="//@children.5" target="//@children.4" targetEnd="//@children.5/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="116,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="109,99"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" id="lu.uni.jane.service_start/DeviceGroupsMobilitySource->lu.uni.jane.service_start/DeviceGroup" source="//@children.5" target="//@children.2" targetEnd="//@children.5/@sourceConnections.1/@children.2" label="//@children.5/@sourceConnections.1/@children.0" sourceEnd="//@children.5/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«import»" size="42,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,92" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="189,219"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" id="lu.uni.jane.service_start/DeviceGroupsMobilitySource->de.uni_trier.jane.service.unit/ServiceFactory" source="//@children.5" target="//@children.3" targetEnd="//@children.5/@sourceConnections.2/@children.2" label="//@children.5/@sourceConnections.2/@children.0" sourceEnd="//@children.5/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«import»" size="42,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,127" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="138,71"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.4/@sourceConnections.0" name="MobilitySource" location="899,40" size="164,481" stereotype="interface" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource" packageIndication="1" runTimeClassModel="getShape(),hasNextEnterInfo(),getNextArrivalInfo(Lde.uni_trier.jane.basetypes.DeviceID;),getRectangle(),getTerminalCondition(Lde.uni_trier.jane.basetypes.Clock;),de.uni_trier.jane.simulation.dynamic.mobility_source.MobilitySource.ArrivalInfo,getNextEnterInfo(),getTotalDeviceCount(),hasNextArrivalInfo(Lde.uni_trier.jane.basetypes.DeviceID;),de.uni_trier.jane.simulation.dynamic.mobility_source.MobilitySource.EnterInfo">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="130,144">
+      <children xsi:type="editmodel:MethodEditModel" name="hasNextEnterInfo" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource#hasNextEnterInfo()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getNextEnterInfo" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource#getNextEnterInfo()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasNextArrivalInfo" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource#hasNextArrivalInfo(Lde.uni_trier.jane.basetypes.DeviceID;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getNextArrivalInfo" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource#getNextArrivalInfo(Lde.uni_trier.jane.basetypes.DeviceID;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRectangle" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource#getRectangle()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getShape" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource#getShape()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTotalDeviceCount" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource#getTotalDeviceCount()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTerminalCondition" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource#getTerminalCondition(Lde.uni_trier.jane.basetypes.Clock;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="141,264">
+      <children xsi:type="editmodel:ClassEditModel" name="ArrivalInfo" size="117,139" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource$ArrivalInfo" runTimeClassModel="isSuspended(),ArrivalInfo(Lde.uni_trier.jane.basetypes.Position;D),getPosition(),ArrivalInfo(Lde.uni_trier.jane.basetypes.Position;DZ),getTime()">
+        <children xsi:type="editmodel:CompartmentEditModel"/>
+        <children xsi:type="editmodel:CompartmentEditModel" size="94,90">
+          <children xsi:type="editmodel:MethodEditModel" name="ArrivalInfo" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource$ArrivalInfo#ArrivalInfo(Lde.uni_trier.jane.basetypes.Position;DZ)"/>
+          <children xsi:type="editmodel:MethodEditModel" name="ArrivalInfo" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource$ArrivalInfo#ArrivalInfo(Lde.uni_trier.jane.basetypes.Position;D)"/>
+          <children xsi:type="editmodel:MethodEditModel" name="getPosition" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource$ArrivalInfo#getPosition()"/>
+          <children xsi:type="editmodel:MethodEditModel" name="getTime" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource$ArrivalInfo#getTime()"/>
+          <children xsi:type="editmodel:MethodEditModel" name="isSuspended" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource$ArrivalInfo#isSuspended()"/>
+        </children>
+        <children xsi:type="editmodel:CompartmentEditModel"/>
+        <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true"/>
+      </children>
+      <children xsi:type="editmodel:ClassEditModel" name="EnterInfo" size="141,121" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource$EnterInfo" runTimeClassModel="getAddress(),getSendingRadius(),EnterInfo(Lde.uni_trier.jane.basetypes.DeviceID;DLde.uni_trier.jane.simulation.dynamic.mobility_source.MobilitySource.ArrivalInfo;),getArrivalInfo()">
+        <children xsi:type="editmodel:CompartmentEditModel"/>
+        <children xsi:type="editmodel:CompartmentEditModel" size="118,72">
+          <children xsi:type="editmodel:MethodEditModel" name="EnterInfo" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource$EnterInfo#EnterInfo(Lde.uni_trier.jane.basetypes.DeviceID;DLde.uni_trier.jane.simulation.dynamic.mobility_source.MobilitySource.ArrivalInfo;)"/>
+          <children xsi:type="editmodel:MethodEditModel" name="getAddress" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource$EnterInfo#getAddress()"/>
+          <children xsi:type="editmodel:MethodEditModel" name="getArrivalInfo" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource$EnterInfo#getArrivalInfo()"/>
+          <children xsi:type="editmodel:MethodEditModel" name="getSendingRadius" id="de.uni_trier.jane.simulation.dynamic.mobility_source/MobilitySource$EnterInfo#getSendingRadius()"/>
+        </children>
+        <children xsi:type="editmodel:CompartmentEditModel"/>
+        <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showAttributeProperty="true"/>
+      </children>
+    </children>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="1" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.1 //@children.0/@sourceConnections.1" name="DeviceGroupsExampleSimulation" location="160,166" size="256,193" id="lu.uni.jane.service_start.example/DeviceGroupsExampleSimulation" packageIndication="1" runTimeClassModel="main([Ljava.lang.String;),mobilitySrc,dEVICE_COUNT,dEVICE_AREA,initServices(Lde.uni_trier.jane.service.unit.ServiceUnit;),initGlobalServices(Lde.uni_trier.jane.service.unit.ServiceUnit;),initSimulation(Lde.uni_trier.jane.simulation.SimulationParameters;),dATA_RATE">
+    <children xsi:type="editmodel:CompartmentEditModel" size="217,72">
+      <children xsi:type="editmodel:AttributeEditModel" name="dEVICE_COUNT" id="lu.uni.jane.service_start.example/DeviceGroupsExampleSimulation#dEVICE_COUNT"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="dEVICE_AREA" id="lu.uni.jane.service_start.example/DeviceGroupsExampleSimulation#dEVICE_AREA"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="dATA_RATE" id="lu.uni.jane.service_start.example/DeviceGroupsExampleSimulation#dATA_RATE"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="mobilitySrc" id="lu.uni.jane.service_start.example/DeviceGroupsExampleSimulation#mobilitySrc"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="117,72">
+      <children xsi:type="editmodel:MethodEditModel" name="initSimulation" id="lu.uni.jane.service_start.example/DeviceGroupsExampleSimulation#initSimulation(Lde.uni_trier.jane.simulation.SimulationParameters;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="initGlobalServices" id="lu.uni.jane.service_start.example/DeviceGroupsExampleSimulation#initGlobalServices(Lde.uni_trier.jane.service.unit.ServiceUnit;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="initServices" id="lu.uni.jane.service_start.example/DeviceGroupsExampleSimulation#initServices(Lde.uni_trier.jane.service.unit.ServiceUnit;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="main" location="4,167" id="lu.uni.jane.service_start.example/DeviceGroupsExampleSimulation#main([Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" id="lu.uni.jane.service_start.example/DeviceGroupsExampleSimulation->de.uni_trier.jane.service.unit/ServiceFactory" source="//@children.7" target="//@children.3" targetEnd="//@children.7/@sourceConnections.0/@children.2" label="//@children.7/@sourceConnections.0/@children.0" sourceEnd="//@children.7/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«import»" size="42,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="256,10" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,64"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="de.uni_trier.jane.simulation/Simulation&lt;-lu.uni.jane.service_start.example/DeviceGroupsExampleSimulation" source="//@children.7" target="//@children.8" targetEnd="//@children.7/@sourceConnections.1/@children.1" sourceEnd="//@children.7/@sourceConnections.1/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="127,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="57,85"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" id="lu.uni.jane.service_start.example/DeviceGroupsExampleSimulation->lu.uni.jane.service_start/DeviceGroupsMobilitySource" source="//@children.7" target="//@children.5" targetEnd="//@children.7/@sourceConnections.2/@children.2" label="//@children.7/@sourceConnections.2/@children.0" sourceEnd="//@children.7/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«import»" size="42,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="132,193" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,10"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="1" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.7/@sourceConnections.1" name="Simulation" location="230,40" size="115,85" id="de.uni_trier.jane.simulation/Simulation" packageIndication="1" runTimeClassModel="initSimulation(Lde.uni_trier.jane.simulation.SimulationParameters;),run()">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="92,36">
+      <children xsi:type="editmodel:MethodEditModel" name="initSimulation" id="de.uni_trier.jane.simulation/Simulation#initSimulation(Lde.uni_trier.jane.simulation.SimulationParameters;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="run" id="de.uni_trier.jane.simulation/Simulation#run()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="1" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=7" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="10,10" gridOrigin="0,0" rulerUnit="pixel">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" showInterfaceStereotype="true" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>

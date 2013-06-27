@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="randomElement.jar"/>
+	<classpathentry exported="true" kind="lib" path="randomx.jar"/>
+	<classpathentry exported="true" sourcepath="native_Linux/src/openglsrc.zip" kind="lib" path="native_Linux/opengl.jar"/>
+	<classpathentry exported="true" sourcepath="native_Linux/src/swtsrc.zip" kind="lib" path="native_Linux/swt.jar">
+		<attributes>
+			<attribute value="JANE_Base/native_Linux" name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path=""/>
+</classpath>

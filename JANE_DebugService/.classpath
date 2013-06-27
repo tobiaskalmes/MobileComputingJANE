@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="/JANE_Base"/>
+	<classpathentry kind="src" path="/JANE_Simulation"/>
+	<classpathentry kind="src" path="/JANE_SimulationServices"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

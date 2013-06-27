@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE fixed_nodes SYSTEM "fixed_nodes.dtd">
+
+<fixed_nodes>
+	<node>
+		<address>0</address>
+		<position><x>50</x><y>100</y></position>
+		<sending_radius>250</sending_radius>
+	</node>
+	<node>
+		<address>1</address>
+		<position><x>150</x><y>50</y></position>
+		<sending_radius>250</sending_radius>
+	</node>
+	<node>
+		<address>2</address>
+		<position><x>250</x><y>100</y></position>
+		<sending_radius>250</sending_radius>
+	</node>
+	<node>
+		<address>3</address>
+		<position><x>150</x><y>150</y></position>
+		<sending_radius>250</sending_radius>
+	</node>
+	<node>
+		<address>4</address>
+		<position><x>250</x><y>250</y></position>
+		<sending_radius>250</sending_radius>
+	</node>
+	<node>
+		<address>5</address>
+		<position><x>350</x><y>200</y></position>
+		<sending_radius>250</sending_radius>
+	</node>
+	<node>
+		<address>6</address>
+		<position><x>150</x><y>480</y></position>
+		<sending_radius>250</sending_radius>
+	</node>
+</fixed_nodes>

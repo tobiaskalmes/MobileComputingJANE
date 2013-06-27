@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="de/uni_trier/jane/sgui/swt/native_Win32/|de/uni_trier/jane/sgui/swt/native_Win32/|de/uni_trier/jane/sgui/swt/native_Win32/" kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="src" path="/JANE_Base"/>
+	<classpathentry exported="true" kind="src" path="/JANE_Hybrid"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/JANE_Services"/>
+	<classpathentry kind="output" path="_output"/>
+</classpath>

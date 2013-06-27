@@ -1,0 +1,15 @@
+<!-- the device configuration -->
+<!ELEMENT DeviceConfiguration (DeviceGroup)*>
+
+<!-- a device group -->
+<!ELEMENT DeviceGroup (Device)*>
+<!ATTLIST DeviceGroup
+	numberOfDevices CDATA #IMPLIED
+	deviceClass CDATA #REQUIRED
+>
+
+<!ELEMENT Device EMPTY>
+<!ATTLIST Device
+	x CDATA #REQUIRED
+	y CDATA #REQUIRED
+>

@@ -1,0 +1,75 @@
+<!-- The complete timetable -->
+<!ELEMENT TIMETABLE (CLASS|ENTER|EXIT|EVENT)*>
+
+<!-- a class of people -->
+<!ELEMENT CLASS (MEMBER)*>
+<!ATTLIST CLASS
+	NAME ID #REQUIRED
+>
+
+<!-- a member of a class of people -->
+<!ELEMENT MEMBER (APPLICATION)>
+<!ATTLIST MEMBER 
+	NAME  		ID    #REQUIRED
+	ID			ID	  #REQUIRED
+	POWER 		CDATA #REQUIRED
+	MINSPEED	CDATA #REQUIRED
+	MAXSPEED 	CDATA #REQUIRED
+>
+
+<!-- parameter of a member -->
+<!ELEMENT PARAM EMPTY>
+<!ATTLIST PARAM
+	NAME  CDATA #REQUIRED
+	VALUE CDATA #REQUIRED
+>
+<!-- APPLICATION of a memeber  -->
+<!ELEMENT SERVICES (SERVICECLASS*)>
+
+<!-- userclass of an application  -->
+<!ELEMENT SERVICECLASS (PARAM)*>
+<!ATTLIST SERVICECLASS
+	NAME  		CDATA    #REQUIRED
+	VISUALIZE   CDATA
+>
+	
+
+
+
+<!-- a person enters the simulation -->
+<!ELEMENT ENTER (PARTICIPANTS|PLACE)*>
+<!ATTLIST ENTER
+	NAME ID    #REQUIRED
+	END  CDATA #REQUIRED
+	FUZZ CDATA #REQUIRED
+>
+
+<!-- the participants of an event -->
+<!ELEMENT PARTICIPANTS EMPTY>
+<!ATTLIST PARTICIPANTS
+	CLASS IDREF #REQUIRED
+>
+
+<!-- the place where an event happens -->
+<!ELEMENT PLACE EMPTY>
+<!ATTLIST PLACE
+	NAME CDATA #REQUIRED
+	PROB CDATA #REQUIRED
+>
+
+<!-- a person exits from the simulation -->
+<!ELEMENT EXIT (PARTICIPANTS|PLACE)*>
+<!ATTLIST EXIT
+	NAME ID    #REQUIRED
+	END  CDATA #REQUIRED
+	FUZZ CDATA #REQUIRED
+>
+
+<!-- some event happens where a class of people meets
+     at a few places -->
+<!ELEMENT EVENT (PARTICIPANTS|PLACE)*>
+<!ATTLIST EVENT
+	NAME ID    #REQUIRED
+	END  CDATA #REQUIRED
+	FUZZ CDATA #REQUIRED
+>	

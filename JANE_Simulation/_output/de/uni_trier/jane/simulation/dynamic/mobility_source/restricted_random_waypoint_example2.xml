@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE restricted_random_waypoint SYSTEM "restricted_random_waypoint.dtd">
+
+<restricted_random_waypoint>
+	
+	<population>
+		<general>
+			<sending_radius>100</sending_radius>
+		</general>
+		<ordinary_terminode>
+			<number>200</number>
+			<stay_in_town_steps>6</stay_in_town_steps>
+			<speed>
+				<min>0.5</min>
+				<max>1.5</max>
+			</speed>
+			<mean_pause>60</mean_pause>
+		</ordinary_terminode>
+		<commuter_terminode>
+			<number>300</number>
+			<speed>
+				<min>4.5</min>
+				<max>8.5</max>
+			</speed>
+			<mean_pause>10</mean_pause>
+		</commuter_terminode>
+	</population>
+	
+	<environment>
+		<town>
+			<id>0</id>
+			<name>town 0</name>
+			<center>
+				<x>550</x>
+				<y>550</y>
+			</center>
+			<extent>
+				<x>500</x>
+				<y>500</y>
+			</extent>
+			<connected>
+				<id>0</id>
+				<id>1</id>
+				<id>2</id>
+			</connected>
+		</town>
+		<town>
+			<id>1</id>
+			<name>town 1</name>
+			<center>
+				<x>2500</x>
+				<y>500</y>
+			</center>
+			<extent>
+				<x>500</x>
+				<y>500</y>
+			</extent>
+			<connected>
+				<id>0</id>
+				<id>1</id>
+				<id>3</id>
+			</connected>
+		</town>
+		<town>
+			<id>2</id>
+			<name>town 2</name>
+			<center>
+				<x>1000</x>
+				<y>2000</y>
+			</center>
+			<extent>
+				<x>500</x>
+				<y>500</y>
+			</extent>
+			<connected>
+				<id>0</id>
+				<id>2</id>
+			</connected>
+		</town>
+		<town>
+			<id>3</id>
+			<name>town 3</name>
+			<center>
+				<x>2500</x>
+				<y>2000</y>
+			</center>
+			<extent>
+				<x>500</x>
+				<y>500</y>
+			</extent>
+			<connected>
+				<id>1</id>
+				<id>3</id>
+			</connected>
+		</town>
+	</environment>
+
+</restricted_random_waypoint>

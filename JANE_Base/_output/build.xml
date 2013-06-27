@@ -1,0 +1,102 @@
+<project name="JANE" default="all" basedir="..">
+    <description>
+        simple example build file
+    </description>
+  <!-- set global properties for this build -->
+  <property name="src" location="."/>
+  <property name="build" location="build"/>
+  <property name="dist"  location="dist"/>
+
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="base"/>
+    <mkdir dir="hybrid"/>
+    <mkdir dir="simulation"/>
+  	<mkdir dir="services"/>
+  	<mkdir dir="rtservices"/>
+  	<mkdir dir="simservices"/>
+
+    <mkdir dir="platform"/>
+    <mkdir dir="pservices"/>
+  </target>
+
+
+	
+  <target name="compile" depends="init"
+	        description="compile the source " >
+	    <!-- Compile the java code from ${src} into ${build} -->
+	    <javac srcdir="JANE_Base" classpath="JANE_Base/randomx.jar:JANE_Base/randomElement.jar" destdir="base"/>
+	    <javac srcdir="JANE_Hybrid" classpath="base" destdir="hybrid"/>
+	    <javac srcdir="JANE_Simulation" classpath="base:hybrid:JANE_Simulation/native_Linux/swt.jar:JANE_Simulation/native_Linux/opengl.jar" destdir="simulation"/>
+	  	<javac srcdir="JANE_Services" classpath="base" destdir="services"/>
+	  	<javac srcdir="JANE_RuntimeServices" classpath="base:services" destdir="rtservices"/>
+	  	<javac srcdir="JANE_SimulationServices" classpath="base:services:rtservices:simulation:JANE_Simulation/native_Linux/swt.jar" destdir="simservices"/>
+  	
+	    <javac srcdir="JANE_Platform" classpath="base:services" destdir="platform"/>  	    
+	    <javac srcdir="JANE_PlatformServices" classpath="base:platform:services:rtservices:JANE_PlatformServices/jakarta-regexp-1.2.jar:JANE_PlatformServices/native_Linux/comm.jar:JANE_PlatformServices/native_Linux/swt.jar" destdir="pservices"/>  	    
+	  </target>
+
+
+	
+	<target name="all" depends="compile"
+	        description="generate the distribution" >
+	    <!-- Create the distribution directory -->
+	    <mkdir dir="lib"/>
+	    <mkdir dir="src"/>
+
+	    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+	    <jar jarfile="lib/JANE_Base-${DSTAMP}.jar" basedir="base"/>
+	    <jar jarfile="lib/JANE_Hybrid-${DSTAMP}.jar" basedir="hybrid"/>
+	    <jar jarfile="lib/JANE_Simulation-${DSTAMP}.jar" basedir="simulation"/>
+	    <jar jarfile="lib/JANE_Services-${DSTAMP}.jar" basedir="services"/>
+	    <jar jarfile="lib/JANE_RuntimeServices-${DSTAMP}.jar" basedir="rtservices"/>
+	    <jar jarfile="lib/JANE_SimulationServices-${DSTAMP}.jar" basedir="simservices"/>
+		<jar jarfile="lib/JANE_Platform-${DSTAMP}.jar" basedir="platform"/>
+	    <jar jarfile="lib/JANE_PlatformServices-${DSTAMP}.jar" basedir="pservices"/>
+		
+	    <jar jarfile="src/JANE_Base-src-${DSTAMP}.jar">
+	    	<fileset dir="JANE_Base" excludes="*.jar,*.zip"/>
+		</jar>
+		
+	    <jar jarfile="src/JANE_Hybrid-src-${DSTAMP}.jar">
+	    	<fileset dir="JANE_Hybrid" excludes="**/*.jar,**/*.zip"/>
+		</jar>
+	    <jar jarfile="src/JANE_Simulation-src-${DSTAMP}.jar">
+	    	<fileset dir="JANE_Simulation" excludes="**/*.jar,**/*.zip,**/*.dll,**/*.so"/>
+		</jar>
+	    <jar jarfile="src/JANE_Services-src-${DSTAMP}.jar">
+	    	<fileset dir="JANE_Services" excludes="**/*.jar,**/*.zip"/>
+		</jar>
+	    <jar jarfile="src/JANE_RuntimeServices-src-${DSTAMP}.jar"> 
+	    	<fileset dir="JANE_RuntimeServices" excludes="**/*.jar,**/*.zip"/>
+		</jar>
+	    <jar jarfile="src/JANE_SimulationServices-src-${DSTAMP}.jar">
+	    	<fileset dir="JANE_SimulationServices" excludes="**/*.jar,**/*.zip"/>
+		</jar>
+		<jar jarfile="src/JANE_Platform-src-${DSTAMP}.jar">
+	    	<fileset dir="JANE_Platform" excludes="**/*.jar,**/*.zip"/>
+		</jar>
+	    <jar jarfile="src/JANE_PlatformServices-src-${DSTAMP}.jar">
+	    	<fileset dir="JANE_PlatformServices" excludes="**/*.jar,**/*.zip,**/*.dll,**/*.so.classpath"/>
+		</jar>
+	  </target>
+
+  <target name="clean"
+        description="clean up" >
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="lib"/>
+  	<delete dir="src"/>
+  	
+    <delete dir="base"/>
+    <delete dir="hybrid"/>
+    <delete dir="simulation"/>
+  	<delete dir="services"/>
+  	<delete dir="rtservices"/>
+  	<delete dir="simservices"/>
+  	
+    <delete dir="platform"/>
+    <delete dir="pservices"/>
+  </target>
+</project>

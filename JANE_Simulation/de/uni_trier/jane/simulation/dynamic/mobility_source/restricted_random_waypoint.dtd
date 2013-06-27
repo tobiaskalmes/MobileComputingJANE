@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT center (x,y)>
+
+<!ELEMENT commuter_terminode (number,speed,mean_pause)>
+
+<!ELEMENT connected (id+)>
+
+<!ELEMENT environment (town+)>
+
+<!ELEMENT extent (x,y)>
+
+<!ELEMENT general (sending_radius)>
+
+<!ELEMENT id (#PCDATA)>
+
+<!ELEMENT max (#PCDATA)>
+
+<!ELEMENT mean_pause (#PCDATA)>
+
+<!ELEMENT min (#PCDATA)>
+
+<!ELEMENT name (#PCDATA)>
+
+<!ELEMENT number (#PCDATA)>
+
+<!ELEMENT ordinary_terminode (number,stay_in_town_steps,speed,mean_pause)>
+
+<!ELEMENT population (general,ordinary_terminode,commuter_terminode)>
+
+<!ELEMENT restricted_random_waypoint (population,environment)>
+
+<!ELEMENT sending_radius (#PCDATA)>
+
+<!ELEMENT speed (min,max)>
+
+<!ELEMENT stay_in_town_steps (#PCDATA)>
+
+<!ELEMENT town (id,name,center,extent,connected)>
+
+<!ELEMENT x (#PCDATA)>
+
+<!ELEMENT y (#PCDATA)>
+
