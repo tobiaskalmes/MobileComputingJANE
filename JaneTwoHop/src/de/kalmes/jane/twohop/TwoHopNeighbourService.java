@@ -51,15 +51,18 @@ public class TwoHopNeighbourService implements RuntimeService, NeighborDiscovery
 
     @Override
     public void setNeighborData(NeighborDiscoveryData neighborData) {
+        linkLayer.sendUnicast(neighborData.getSender(),
+                new TwoHopMessage(getDirectNeighbors()));
+    }
+
+    private List<String> getDirectNeighbors() {
         //get direct neighbors
         Set<String> tempNeighbors = neighbors.keySet();
         List<String> neighborsList = new ArrayList<String>();
         for (String item : tempNeighbors) {
             neighborsList.add(item);
         }
-
-        linkLayer.sendUnicast(neighborData.getSender(),
-                new TwoHopMessage(neighborsList));
+        return neighborsList;
     }
 
     @Override
@@ -121,15 +124,26 @@ public class TwoHopNeighbourService implements RuntimeService, NeighborDiscovery
 
     //Wird aufgerufen, wenn eine Nachricht (sendUnicast) eintrifft
     public void handleMessage(final String sender, final List<String> content) {
-        List<String> oldNeighbors = neighbors.get(sender);
-        //simplified for non moving, non vanishing nodes
-        if (oldNeighbors == null || content.size() != oldNeighbors.size()) {
-            //send updates
-            linkLayer.sendBroadcast(new TwoHopMessage(content));
-            neighbors.put(sender, content);
-        }
+        if (runtimeOperatingSystem.toString().equals(sender)) {
+            System.out.println("Skipping message from myself");
+        } else {
+            List<String> oldNeighbors = neighbors.get(sender);
+            //simplified for non moving, non vanishing nodes
+            if (oldNeighbors == null || content.size() != oldNeighbors.size()) {
+                //send updates
+                neighbors.put(sender, content);
+                linkLayer.sendBroadcast(new TwoHopMessage(getDirectNeighbors()));
+            }
 
-        //Todo: output neighbors
-        System.out.println("Nachricht erhalten: " + content + " (Sender: " + sender + ")");
+            //Todo: output neighbors
+            System.out.println("Node " + runtimeOperatingSystem);
+            for (Map.Entry<String, List<String>> directNeighbor : neighbors.entrySet()) {
+                System.out.println("Neighbor: " + directNeighbor.getKey());
+                for (String indirectNeighbor : directNeighbor.getValue()) {
+                    System.out.println("---> " + indirectNeighbor);
+                }
+            }
+            System.out.println("-------------------------");
+        }
     }
 }
