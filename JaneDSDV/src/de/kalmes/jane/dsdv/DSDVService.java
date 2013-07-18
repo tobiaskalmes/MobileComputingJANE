@@ -15,6 +15,7 @@ import de.uni_trier.jane.visualization.shapes.Shape;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -32,7 +33,9 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
     private NeighborDiscoveryService_sync neighborService;
     private RuntimeOperatingSystem runtimeOperatingSystem;
     private int sequenceNumber;
-    private List<DSDVEntry> dsdvTable;
+    private List<DSDVEntry> routingTable;
+
+    //TODO: periodic update
 
     public DSDVService(ServiceID linkLayerID, ServiceID neighborID) {
         super();
@@ -44,13 +47,13 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
         this.linkLayerID = linkLayerID;
         this.neighborID = neighborID;
         sequenceNumber = 1000000;
-        dsdvTable = new ArrayList<DSDVEntry>();
+        routingTable = new ArrayList<DSDVEntry>();
     }
 
     @Override
     public void setNeighborData(NeighborDiscoveryData neighborData) {
         linkLayer.sendUnicast(neighborData.getSender(),
-                new DSDVMessage(new DSDVEntry(runtimeOperatingSystem.toString(), runtimeOperatingSystem.toString(), sequenceNumber++)));
+                new DSDVMessage(new DSDVEntry(neighborData.getSender(), neighborData.getSender(), ++sequenceNumber)));
     }
 
     @Override
@@ -101,18 +104,48 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
     }
 
     //Wird aufgerufen, wenn eine Nachricht (sendUnicast) eintrifft
-    public void handleMessage(String sender, DSDVEntry entry) {
-        if (runtimeOperatingSystem.toString().equals(sender)) {
-            System.out.println("Skipping message from myself");
+    public void handleMessage(Address sender, DSDVEntry entry) {
+        if (runtimeOperatingSystem.toString().equals(sender.toString())) {
+            //System.out.println("Skipping message from myself");
         } else {
-            for(DSDVEntry oldEntry : dsdvTable)
-            {
-                if(oldEntry.getDestination().equals(entry.getDestination()))
-                {
-                    if(oldEntry.getSequenceNumber() < entry.getSequenceNumber())
-                    {
+            System.out.println("----------Node " + runtimeOperatingSystem + "----------");
+            if (!routingTable.contains(entry)) {
+                //No entry yet
+                DSDVEntry newEntry = DSDVEntry.createNewEntry(entry);
+                routingTable.add(newEntry);
+                System.out.println("Added Entry for: " + newEntry.getDestination()
+                        + " | HopCount: " + newEntry.getNumberOfHops()
+                        + " | SequenceNumber: " + newEntry.getSequenceNumber());
+                linkLayer.sendBroadcast(new DSDVMessage(newEntry));
+            } else {
+                for (DSDVEntry oldEntry : routingTable) {
+                    if (oldEntry.getDestination().equals(entry.getDestination())) {
+                        if (((oldEntry.getSequenceNumber() < entry.getSequenceNumber()))
+                                || (oldEntry.getSequenceNumber() == entry.getSequenceNumber()
+                                && oldEntry.getNumberOfHops() > entry.getNumberOfHops())) {
+                            //Update routing table
+                            oldEntry.update(entry);
+                            System.out.println("Entry Update for: " + oldEntry.getDestination()
+                                    + " | HopCount: " + oldEntry.getNumberOfHops()
+                                    + " | SequenceNumber: " + oldEntry.getSequenceNumber());
+                            linkLayer.sendBroadcast(new DSDVMessage(entry));
+                        }
+                        break;
+                    }
                 }
             }
         }
+    }
+
+    public Set getAllReachableDevices() {
+        return null;
+    }
+
+    public Address getNextHop(Address destination) {
+        return null;
+    }
+
+    public int getHopCount(Address destination) {
+        return -1;
     }
 }

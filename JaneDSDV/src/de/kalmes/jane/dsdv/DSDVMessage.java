@@ -26,8 +26,7 @@ public class DSDVMessage implements LinkLayerMessage {
 
     @Override
     public void handle(LinkLayerInfo info, SignalListener listener) {
-        String sender = info.getSender().toString();
-        ((DSDVService) listener).handleMessage(sender, entry);
+        ((DSDVService) listener).handleMessage(info.getSender(), entry);
     }
 
     @Override
