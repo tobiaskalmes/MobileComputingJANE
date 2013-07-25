@@ -26,6 +26,7 @@ import java.util.Set;
  */
 public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
 
+    private static final long UPDATE_TIME = 60 * 1000L;
     public static ServiceID                     serviceID;
     private       ServiceID                     linkLayerID;
     private       ServiceID                     neighborID;
@@ -34,8 +35,7 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
     private       RuntimeOperatingSystem        runtimeOperatingSystem;
     private       int                           sequenceNumber;
     private       List<DSDVEntry>               routingTable;
-
-    //TODO: periodic update
+    private       Thread                        periodicUpdates;
 
     public DSDVService(ServiceID linkLayerID, ServiceID neighborID) {
         super();
@@ -48,6 +48,25 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
         this.neighborID = neighborID;
         sequenceNumber = 1000000;
         routingTable = new ArrayList<DSDVEntry>();
+        periodicUpdates = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(UPDATE_TIME);
+                    //send Broadcast for every entry
+                    System.out.println("Executing full update from " + runtimeOperatingSystem.toString());
+                    for (DSDVEntry entry : routingTable) {
+                        linkLayer.sendBroadcast(new DSDVMessage(entry));
+                    }
+                    System.out.println("Update from " + runtimeOperatingSystem.toString() + " finished");
+                }
+                catch (InterruptedException e) {
+                    System.out.println(e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        };
+        periodicUpdates.start();
     }
 
     @Override
