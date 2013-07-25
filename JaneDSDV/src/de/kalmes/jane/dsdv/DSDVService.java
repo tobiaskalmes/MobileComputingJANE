@@ -14,6 +14,7 @@ import de.uni_trier.jane.service.parameter.todo.Parameters;
 import de.uni_trier.jane.visualization.shapes.Shape;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -207,14 +208,28 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
     }
 
     public Set getAllReachableDevices() {
-        return null;
+        Set<Address> reachableDevices = new HashSet<Address>();
+        for (DSDVEntry entry : routingTable) {
+            reachableDevices.add(entry.getDestination());
+        }
+        return reachableDevices;
     }
 
     public Address getNextHop(Address destination) {
+        for (DSDVEntry entry : routingTable) {
+            if (destination.toString().equals(entry.getDestination().toString())) {
+                return entry.getNextHop();
+            }
+        }
         return null;
     }
 
     public int getHopCount(Address destination) {
+        for (DSDVEntry entry : routingTable) {
+            if (destination.toString().equals(entry.getDestination().toString())) {
+                return entry.getNumberOfHops();
+            }
+        }
         return -1;
     }
 }
