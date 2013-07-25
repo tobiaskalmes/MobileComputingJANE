@@ -1,14 +1,8 @@
 package de.kalmes.jane.chat;
 
-import de.uni_trier.jane.basetypes.Address;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.HashMap;
-import java.util.Map;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,41 +11,38 @@ import java.util.Map;
  * Time: 18:22
  * To change this template use File | Settings | File Templates.
  */
-public class ChatHandler {
-    private static final int PORT = 10042;
-    private Map<Address, String> chatLogMap;
-    private IChatReceiver        receiver;
-    private ServerSocket         serverSocket;
-    private Socket               socket;
-    private InputStream          in;
-    private OutputStream         out;
+public class ChatHandler extends UnicastRemoteObject implements IChatHandler {
+    private IMessageReceiver messageReceiver;
+    private String           lastChatPartner;
+    private IChatHandler     chatPartner;
+    private String           ownAdress;
 
-    public ChatHandler(IChatReceiver receiver) throws IOException {
-        this.receiver = receiver;
-        chatLogMap = new HashMap<Address, String>();
-        serverSocket = new ServerSocket(PORT);
-        socket = serverSocket.accept();
-        in = socket.getInputStream();
-        out = socket.getOutputStream();
-        //TODO: check for exceptions
-        //Start listener
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-            }
-        };
-        thread.start();
+    public ChatHandler() throws RemoteException {
+        super();
+        ownAdress = "fdg"; // getOwn IP
     }
 
-    public String initializeChat(Address receiver) {
-        String returnValue;
-        if (!chatLogMap.containsKey(receiver)) {
-            chatLogMap.put(receiver, "");
+    public void addMessageReceiver(IMessageReceiver messageReceiver) {
+        this.messageReceiver = messageReceiver;
+    }
+
+    public void sendMessage(String receiver, String message) {
+        //RMI send
+        try {
+            if (lastChatPartner == null || !lastChatPartner.equals(receiver)) {
+                chatPartner = (ChatHandler) Naming.lookup(receiver);
+                lastChatPartner = receiver;
+            }
+            chatPartner.receiveMessage(ownAdress, message);
         }
-        returnValue = chatLogMap.get(receiver);
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
-        //init chat
-
-        return returnValue;
+    @Override
+    public void receiveMessage(String sender, String message) throws RemoteException {
+        messageReceiver.receiveMessage(sender, message);
     }
 }
