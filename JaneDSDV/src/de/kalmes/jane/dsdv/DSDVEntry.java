@@ -14,9 +14,9 @@ import java.util.Date;
 public class DSDVEntry {
     private Address destination;
     private Address nextHop;
-    private int numberOfHops;
-    private int sequenceNumber;
-    private Date updateTime;
+    private int     numberOfHops;
+    private int     sequenceNumber;
+    private Date    updateTime;
 
     public DSDVEntry(Address destination, Address nextHop, int sequenceNumber) {
         this.destination = destination;
@@ -26,12 +26,19 @@ public class DSDVEntry {
         updateTime = new Date();
     }
 
+    public static DSDVEntry createNewEntry(DSDVEntry oldEntry) {
+        DSDVEntry newEntry = new DSDVEntry(oldEntry.getDestination(), oldEntry.nextHop, oldEntry.sequenceNumber);
+        newEntry.numberOfHops = oldEntry.numberOfHops;
+        newEntry.updateTime = oldEntry.updateTime;
+        return newEntry;
+    }
+
     public void incHopCount() {
         ++numberOfHops;
     }
 
-    public void setNextHop(Address nextHop) {
-        this.nextHop = nextHop;
+    public void resetHopCount() {
+        numberOfHops = 0;
     }
 
     public Address getDestination() {
@@ -40,6 +47,10 @@ public class DSDVEntry {
 
     public Address getNextHop() {
         return nextHop;
+    }
+
+    public void setNextHop(Address nextHop) {
+        this.nextHop = nextHop;
     }
 
     public int getNumberOfHops() {
@@ -58,13 +69,7 @@ public class DSDVEntry {
         sequenceNumber = newEntry.sequenceNumber;
         nextHop = newEntry.nextHop;
         numberOfHops = newEntry.numberOfHops;
-    }
-
-    public static DSDVEntry createNewEntry(DSDVEntry oldEntry) {
-        DSDVEntry newEntry = new DSDVEntry(oldEntry.getDestination(), oldEntry.nextHop, oldEntry.sequenceNumber);
-        ++newEntry.numberOfHops;
-        newEntry.updateTime = oldEntry.updateTime;
-        return newEntry;
+        updateTime = newEntry.updateTime;
     }
 
     @Override

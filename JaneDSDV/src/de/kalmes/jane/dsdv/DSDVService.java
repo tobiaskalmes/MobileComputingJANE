@@ -26,14 +26,14 @@ import java.util.Set;
  */
 public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
 
-    public static ServiceID serviceID;
-    private ServiceID linkLayerID;
-    private ServiceID neighborID;
-    private LinkLayer_async linkLayer;
-    private NeighborDiscoveryService_sync neighborService;
-    private RuntimeOperatingSystem runtimeOperatingSystem;
-    private int sequenceNumber;
-    private List<DSDVEntry> routingTable;
+    public static ServiceID                     serviceID;
+    private       ServiceID                     linkLayerID;
+    private       ServiceID                     neighborID;
+    private       LinkLayer_async               linkLayer;
+    private       NeighborDiscoveryService_sync neighborService;
+    private       RuntimeOperatingSystem        runtimeOperatingSystem;
+    private       int                           sequenceNumber;
+    private       List<DSDVEntry>               routingTable;
 
     //TODO: periodic update
 
@@ -52,8 +52,9 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
 
     @Override
     public void setNeighborData(NeighborDiscoveryData neighborData) {
-        linkLayer.sendUnicast(neighborData.getSender(),
-                new DSDVMessage(new DSDVEntry(neighborData.getSender(), neighborData.getSender(), ++sequenceNumber)));
+        linkLayer.sendUnicast(neighborData.getSender(), new DSDVMessage(new DSDVEntry(neighborData.getSender(),
+                                                                                      neighborData.getSender(),
+                                                                                      ++sequenceNumber)));
     }
 
     @Override
@@ -70,16 +71,16 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
 
         //Am LinkLayer registrieren, um diesen aus TestService heraus nutzen zu k�nnen
         linkLayer = (LinkLayer_async) runtimeOperatingSystem.getSignalListenerStub(linkLayerID,
-                LinkLayer_async.class);
+                                                                                   LinkLayer_async.class);
 
         runtimeOperatingSystem.registerAtService(linkLayerID, LinkLayer_async.class);
 
         //Am Nachbarschaftsservice registrieren, um diesen aus TestService heraus nutzen zu k�nnen
         neighborService = (NeighborDiscoveryService_sync) runtimeOperatingSystem.getSignalListenerStub(neighborID,
-                NeighborDiscoveryService_sync.class);
+                                                                                                       NeighborDiscoveryService_sync.class);
 
         runtimeOperatingSystem.registerAtService(neighborID,
-                NeighborDiscoveryService.class);
+                                                 NeighborDiscoveryService.class);
 
         //Eigenes Beacon setzen
         //neighborService.setOwnData(new TestBeacon(beacon));
@@ -105,36 +106,85 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
 
     //Wird aufgerufen, wenn eine Nachricht (sendUnicast) eintrifft
     public void handleMessage(Address sender, DSDVEntry entry) {
-        if (runtimeOperatingSystem.toString().equals(sender.toString())) {
-            //System.out.println("Skipping message from myself");
-        } else {
-            System.out.println("----------Node " + runtimeOperatingSystem + "----------");
-            if (!routingTable.contains(entry)) {
-                //No entry yet
-                DSDVEntry newEntry = DSDVEntry.createNewEntry(entry);
-                routingTable.add(newEntry);
-                System.out.println("Added Entry for: " + newEntry.getDestination()
-                        + " | HopCount: " + newEntry.getNumberOfHops()
-                        + " | SequenceNumber: " + newEntry.getSequenceNumber());
-                linkLayer.sendBroadcast(new DSDVMessage(newEntry));
+        //ignore messages from myself
+        if (!sender.toString().equals(runtimeOperatingSystem.toString())) {
+            DSDVEntry newEntry = DSDVEntry.createNewEntry(entry);
+            //direct or indirect neighbor?
+            if (newEntry.getDestination().toString().equals(sender.toString())) {
+                //direct neighbor
+                newEntry.resetHopCount();
+                newEntry.incHopCount();
+                if (upsert(newEntry)) {
+                    linkLayer.sendBroadcast(new DSDVMessage(newEntry));
+                    //output Table
+                    outputTable();
+                }
             } else {
-                for (DSDVEntry oldEntry : routingTable) {
-                    if (oldEntry.getDestination().equals(entry.getDestination())) {
-                        if (((oldEntry.getSequenceNumber() < entry.getSequenceNumber()))
-                                || (oldEntry.getSequenceNumber() == entry.getSequenceNumber()
-                                && oldEntry.getNumberOfHops() > entry.getNumberOfHops())) {
-                            //Update routing table
-                            oldEntry.update(entry);
-                            System.out.println("Entry Update for: " + oldEntry.getDestination()
-                                    + " | HopCount: " + oldEntry.getNumberOfHops()
-                                    + " | SequenceNumber: " + oldEntry.getSequenceNumber());
-                            linkLayer.sendBroadcast(new DSDVMessage(entry));
-                        }
-                        break;
+                //indirect neighbor
+                if (newEntry.getDestination().toString().equals(runtimeOperatingSystem.toString())) {
+                    newEntry.resetHopCount();
+                    newEntry.setNextHop(newEntry.getDestination());
+                    if (upsert(newEntry)) {
+                        //output Table
+                        linkLayer.sendBroadcast(new DSDVMessage(newEntry));
+                        outputTable();
+                    }
+                } else {
+                    newEntry.incHopCount();
+                    newEntry.setNextHop(sender);
+                    if (upsert(newEntry)) {
+                        linkLayer.sendBroadcast(new DSDVMessage(newEntry));
+                        //output Table
+                        outputTable();
                     }
                 }
             }
         }
+    }
+
+    /**
+     * Either inserts the entry or updates the old entry if an entry for the destination exists
+     *
+     * @param entry new entry
+     * @return true is entry has been upserted, false otherwise
+     */
+    private boolean upsert(DSDVEntry entry) {
+        if (!routingTable.contains(entry)) {
+            //No entry yet
+            routingTable.add(entry);
+            return true;
+        } else {
+            for (DSDVEntry oldEntry : routingTable) {
+                if (oldEntry.getDestination().equals(entry.getDestination())) {
+                    if (((oldEntry.getSequenceNumber() < entry.getSequenceNumber()))
+                            || (oldEntry.getSequenceNumber() == entry.getSequenceNumber()
+                            && oldEntry.getNumberOfHops() > entry.getNumberOfHops())) {
+                        //Update routing table
+                        oldEntry.update(entry);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private void outputTable() {
+        System.out.println("---------- Node " + runtimeOperatingSystem + " --------");
+        System.out.println
+                ("-------------------------------------------------------------------------------------------------");
+        System.out.println("|Destination\t|NextHop\t|Number of Hops\t|Sequence Number\t|Install " +
+                                   "Time\t\t\t\t\t|");
+        System.out.println
+                ("-------------------------------------------------------------------------------------------------");
+        for (DSDVEntry entry : routingTable) {
+            System.out.println("|" + entry.getDestination() + "\t\t\t\t|" + entry.getNextHop() + "\t\t\t|" +
+                                       entry.getNumberOfHops() + "\t\t\t\t|" +
+                                       entry
+                                               .getSequenceNumber() + "\t\t\t|" + entry.getUpdateTime() + "\t|");
+        }
+        System.out.println
+                ("-------------------------------------------------------------------------------------------------");
     }
 
     public Set getAllReachableDevices() {
