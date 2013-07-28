@@ -15,11 +15,14 @@ public class ChatHandler extends UnicastRemoteObject implements IChatHandler {
     private IMessageReceiver messageReceiver;
     private String           lastChatPartner;
     private IChatHandler     chatPartner;
-    private String           ownAdress;
+    private String           ownAddress;
 
     public ChatHandler() throws RemoteException {
         super();
-        ownAdress = "fdg"; // getOwn IP
+    }
+
+    public void setOwnAddress(String ownAddress) {
+        this.ownAddress = ownAddress;
     }
 
     public void addMessageReceiver(IMessageReceiver messageReceiver) {
@@ -33,7 +36,7 @@ public class ChatHandler extends UnicastRemoteObject implements IChatHandler {
                 chatPartner = (ChatHandler) Naming.lookup(receiver);
                 lastChatPartner = receiver;
             }
-            chatPartner.receiveMessage(ownAdress, message);
+            chatPartner.receiveMessage(ownAddress, message);
         }
         catch (Exception e) {
             System.out.println(e.getMessage());

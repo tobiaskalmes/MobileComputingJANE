@@ -52,18 +52,20 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
         periodicUpdates = new Thread() {
             @Override
             public void run() {
-                try {
-                    Thread.sleep(UPDATE_TIME);
-                    //send Broadcast for every entry
-                    System.out.println("Executing full update from " + runtimeOperatingSystem.toString());
-                    for (DSDVEntry entry : routingTable) {
-                        linkLayer.sendBroadcast(new DSDVMessage(entry));
+                while (true) {
+                    try {
+                        Thread.sleep(UPDATE_TIME);
+                        //send Broadcast for every entry
+                        System.out.println("Executing full update from " + runtimeOperatingSystem.toString());
+                        for (DSDVEntry entry : routingTable) {
+                            linkLayer.sendBroadcast(new DSDVMessage(entry));
+                        }
+                        System.out.println("Update from " + runtimeOperatingSystem.toString() + " finished");
                     }
-                    System.out.println("Update from " + runtimeOperatingSystem.toString() + " finished");
-                }
-                catch (InterruptedException e) {
-                    System.out.println(e.getMessage());
-                    e.printStackTrace();
+                    catch (InterruptedException e) {
+                        System.out.println(e.getMessage());
+                        e.printStackTrace();
+                    }
                 }
             }
         };

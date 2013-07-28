@@ -1,10 +1,15 @@
 package de.kalmes.jane.chat;
 
+import de.kalmes.jane.dsdv.DSDVService;
+import de.uni_trier.jane.basetypes.Address;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
+import java.util.Set;
+import java.util.Vector;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,11 +23,14 @@ public class ChatGUI extends JFrame implements IMessageReceiver {
     private JTextArea   chatLog;
     private JComboBox   receiverChooser;
     private JTextArea   inputTextArea;
+    private DSDVService dsdvService;
 
-    public ChatGUI(String clientAddress) throws RemoteException {
-        super("JANEChat - You are " + clientAddress);
+    public ChatGUI(String ownAddress, DSDVService dsdvService) throws RemoteException {
+        super("JANEChat - You are " + ownAddress);
+        this.dsdvService = dsdvService;
         chatHandler = new ChatHandler();
         chatHandler.addMessageReceiver(this);
+        chatHandler.setOwnAddress(ownAddress);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         setSize(500, 400);
@@ -36,6 +44,20 @@ public class ChatGUI extends JFrame implements IMessageReceiver {
                                                    ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         chatLog.setEditable(false);
         chatPanel.add(chatScroller, BorderLayout.CENTER);
+
+        //refresh neighbors
+        JButton refresh = new JButton("Refresh");
+        refresh.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Vector<String> devices = getReachableDevices();
+                receiverChooser.setModel(new DefaultComboBoxModel(devices));
+                repaint();
+                System.out.println("Reachable Devices updated.");
+            }
+        });
+        chatPanel.add(refresh, BorderLayout.NORTH);
+
         add(chatPanel, BorderLayout.NORTH);
 
         //input area
@@ -54,10 +76,20 @@ public class ChatGUI extends JFrame implements IMessageReceiver {
             public void actionPerformed(ActionEvent e) {
                 chatLog.append("You: " + inputTextArea.getText() + "\n");
                 chatHandler.sendMessage((String) receiverChooser.getSelectedItem(), inputTextArea.getText());
+                inputTextArea.setText("");
             }
         });
         inputPanel.add(sendButton, BorderLayout.SOUTH);
         add(inputPanel, BorderLayout.SOUTH);
+    }
+
+    private Vector<String> getReachableDevices() {
+        Vector<String> devices = new Vector<String>();
+        Set<Address> reachables = dsdvService.getAllReachableDevices();
+        for (Address a : reachables) {
+            devices.add(a.toString());
+        }
+        return devices;
     }
 
     @Override

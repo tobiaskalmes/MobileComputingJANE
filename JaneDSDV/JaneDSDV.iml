@@ -8,7 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="JANE_Base" />
-    <orderEntry type="module" module-name="JANE_DebugService" />
     <orderEntry type="module" module-name="JANE_Hybrid" />
     <orderEntry type="module" module-name="JANE_Platform" />
     <orderEntry type="module" module-name="JANE_PlatformServices" />

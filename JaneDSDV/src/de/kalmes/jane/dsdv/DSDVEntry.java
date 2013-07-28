@@ -2,6 +2,7 @@ package de.kalmes.jane.dsdv;
 
 import de.uni_trier.jane.basetypes.Address;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Date;
  * Time: 22:00
  * To change this template use File | Settings | File Templates.
  */
-public class DSDVEntry {
+public class DSDVEntry implements Serializable {
     private Address destination;
     private Address nextHop;
     private int     numberOfHops;
