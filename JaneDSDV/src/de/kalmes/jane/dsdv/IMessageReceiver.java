@@ -1,4 +1,4 @@
-package de.kalmes.jane.chat;
+package de.kalmes.jane.dsdv;
 
 /**
  * Created with IntelliJ IDEA.

@@ -27,7 +27,7 @@ import java.util.Set;
  */
 public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
 
-    private static final long UPDATE_TIME = 60 * 1000L;
+    private static final long UPDATE_TIME = 10 * 60 * 1000L;
     public static ServiceID                     serviceID;
     private       ServiceID                     linkLayerID;
     private       ServiceID                     neighborID;
@@ -35,8 +35,9 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
     private       NeighborDiscoveryService_sync neighborService;
     private       RuntimeOperatingSystem        runtimeOperatingSystem;
     private       int                           sequenceNumber;
-    private       List<DSDVEntry>               routingTable;
+    private       List                          routingTable;
     private       Thread                        periodicUpdates;
+    private       IMessageReceiver              messageReceiver;
 
     public DSDVService(ServiceID linkLayerID, ServiceID neighborID) {
         super();
@@ -48,7 +49,7 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
         this.linkLayerID = linkLayerID;
         this.neighborID = neighborID;
         sequenceNumber = 1000000;
-        routingTable = new ArrayList<DSDVEntry>();
+        routingTable = new ArrayList();
         periodicUpdates = new Thread() {
             @Override
             public void run() {
@@ -57,7 +58,8 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
                         Thread.sleep(UPDATE_TIME);
                         //send Broadcast for every entry
                         System.out.println("Executing full update from " + runtimeOperatingSystem.toString());
-                        for (DSDVEntry entry : routingTable) {
+                        for (Object e : routingTable) {
+                            DSDVEntry entry = (DSDVEntry) e;
                             linkLayer.sendBroadcast(new DSDVMessage(entry));
                         }
                         System.out.println("Update from " + runtimeOperatingSystem.toString() + " finished");
@@ -70,6 +72,10 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
             }
         };
         periodicUpdates.start();
+    }
+
+    public void setMessageReceiver(IMessageReceiver messageReceiver) {
+        this.messageReceiver = messageReceiver;
     }
 
     @Override
@@ -164,6 +170,39 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
         }
     }
 
+    public void handleMessage(Address sender, ChatMessage message) {
+        if (message.getReceiver().equals(runtimeOperatingSystem.toString())) {
+            //message for you
+            messageReceiver.receiveMessage(message.getSender(), message.getMessage());
+            System.out.println("Received message for me.");
+        } else {
+            //send to next hop
+            sendMessage(message);
+            System.out.println("Received message for someone else.");
+        }
+    }
+
+    public void sendMessage(String sender, String receiver, String message) {
+        Address nextHop = getNextHop(receiver);
+        if (nextHop != null) {
+            linkLayer.sendUnicast(nextHop, new ChatMessage(sender, receiver, message));
+            //linkLayer.sendUnicast(nextHop, new DSDVMessage(new DSDVEntry(nextHop, nextHop, 224976234)));
+            System.out.println("Send message to " + nextHop.toString());
+        } else {
+            System.out.println("No next Hop!");
+        }
+    }
+
+    public void sendMessage(ChatMessage message) {
+        Address nextHop = getNextHop(message.getReceiver());
+        if (nextHop != null) {
+            linkLayer.sendUnicast(nextHop, message);
+            System.out.println("Send message to " + nextHop.toString());
+        } else {
+            System.out.println("No next Hop!");
+        }
+    }
+
     /**
      * Either inserts the entry or updates the old entry if an entry for the destination exists
      *
@@ -176,7 +215,8 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
             routingTable.add(entry);
             return true;
         } else {
-            for (DSDVEntry oldEntry : routingTable) {
+            for (Object oE : routingTable) {
+                DSDVEntry oldEntry = (DSDVEntry) oE;
                 if (oldEntry.getDestination().equals(entry.getDestination())) {
                     if (((oldEntry.getSequenceNumber() < entry.getSequenceNumber()))
                             || (oldEntry.getSequenceNumber() == entry.getSequenceNumber()
@@ -192,6 +232,7 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
     }
 
     private void outputTable() {
+        return;/*
         System.out.println("---------- Node " + runtimeOperatingSystem + " --------");
         System.out.println
                 ("-------------------------------------------------------------------------------------------------");
@@ -199,26 +240,30 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
                                    "Time\t\t\t\t\t|");
         System.out.println
                 ("-------------------------------------------------------------------------------------------------");
-        for (DSDVEntry entry : routingTable) {
+        for (Object e : routingTable) {
+            DSDVEntry entry = (DSDVEntry) e;
             System.out.println("|" + entry.getDestination() + "\t\t\t\t|" + entry.getNextHop() + "\t\t\t|" +
                                        entry.getNumberOfHops() + "\t\t\t\t|" +
                                        entry
                                                .getSequenceNumber() + "\t\t\t|" + entry.getUpdateTime() + "\t|");
         }
         System.out.println
-                ("-------------------------------------------------------------------------------------------------");
+                ("-------------------------------------------------------------------------------------------------")
+                ;   */
     }
 
     public Set getAllReachableDevices() {
-        Set<Address> reachableDevices = new HashSet<Address>();
-        for (DSDVEntry entry : routingTable) {
-            reachableDevices.add(entry.getDestination());
+        Set reachableDevices = new HashSet();
+        for (Object e : routingTable) {
+            DSDVEntry entry = (DSDVEntry) e;
+            reachableDevices.add(entry.getDestination().toString());
         }
         return reachableDevices;
     }
 
     public Address getNextHop(Address destination) {
-        for (DSDVEntry entry : routingTable) {
+        for (Object e : routingTable) {
+            DSDVEntry entry = (DSDVEntry) e;
             if (destination.toString().equals(entry.getDestination().toString())) {
                 return entry.getNextHop();
             }
@@ -226,8 +271,19 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
         return null;
     }
 
+    public Address getNextHop(String destination) {
+        for (Object e : routingTable) {
+            DSDVEntry entry = (DSDVEntry) e;
+            if (destination.equals(entry.getDestination().toString())) {
+                return entry.getNextHop();
+            }
+        }
+        return null;
+    }
+
     public int getHopCount(Address destination) {
-        for (DSDVEntry entry : routingTable) {
+        for (Object e : routingTable) {
+            DSDVEntry entry = (DSDVEntry) e;
             if (destination.toString().equals(entry.getDestination().toString())) {
                 return entry.getNumberOfHops();
             }

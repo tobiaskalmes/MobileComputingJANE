@@ -1,8 +1,5 @@
 package de.kalmes.jane.chat;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
-
 /**
  * Created with IntelliJ IDEA.
  * User: Tobias
@@ -10,6 +7,6 @@ import java.rmi.RemoteException;
  * Time: 22:14
  * To change this template use File | Settings | File Templates.
  */
-public interface IChatHandler extends Remote {
-    public void receiveMessage(String sender, String message) throws RemoteException;
+public interface IChatHandler {
+    public void sendMessage(String sender, String receiver, String message);
 }

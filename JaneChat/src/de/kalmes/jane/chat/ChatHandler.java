@@ -1,8 +1,6 @@
 package de.kalmes.jane.chat;
 
-import java.rmi.Naming;
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
+import de.kalmes.jane.dsdv.DSDVService;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,41 +9,15 @@ import java.rmi.server.UnicastRemoteObject;
  * Time: 18:22
  * To change this template use File | Settings | File Templates.
  */
-public class ChatHandler extends UnicastRemoteObject implements IChatHandler {
-    private IMessageReceiver messageReceiver;
-    private String           lastChatPartner;
-    private IChatHandler     chatPartner;
-    private String           ownAddress;
+public class ChatHandler implements IChatHandler {
+    private DSDVService dsdvService;
 
-    public ChatHandler() throws RemoteException {
-        super();
-    }
-
-    public void setOwnAddress(String ownAddress) {
-        this.ownAddress = ownAddress;
-    }
-
-    public void addMessageReceiver(IMessageReceiver messageReceiver) {
-        this.messageReceiver = messageReceiver;
-    }
-
-    public void sendMessage(String receiver, String message) {
-        //RMI send
-        try {
-            if (lastChatPartner == null || !lastChatPartner.equals(receiver)) {
-                chatPartner = (ChatHandler) Naming.lookup(receiver);
-                lastChatPartner = receiver;
-            }
-            chatPartner.receiveMessage(ownAddress, message);
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+    public ChatHandler(DSDVService dsdvService) {
+        this.dsdvService = dsdvService;
     }
 
     @Override
-    public void receiveMessage(String sender, String message) throws RemoteException {
-        messageReceiver.receiveMessage(sender, message);
+    public void sendMessage(String sender, String receiver, String message) {
+        dsdvService.sendMessage(sender, receiver, message);
     }
 }

@@ -14,9 +14,6 @@ import de.uni_trier.jane.service.unit.ServiceUnit;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.rmi.Naming;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 
 /**
  * Created with IntelliJ IDEA.
@@ -31,8 +28,6 @@ public class PlatformTest extends ExecutionPlatform2 {
 
     public static void main(String[] args) {
         try {
-            LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
-            Naming.rebind("ChatHandler", new ChatHandler());
             PlatformTest test = new PlatformTest();
             test.run();
         }
@@ -78,6 +73,7 @@ public class PlatformTest extends ExecutionPlatform2 {
         catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
+            System.exit(-1);
         }
     }
 }

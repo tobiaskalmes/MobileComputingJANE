@@ -1,13 +1,12 @@
 package de.kalmes.jane.chat;
 
 import de.kalmes.jane.dsdv.DSDVService;
-import de.uni_trier.jane.basetypes.Address;
+import de.kalmes.jane.dsdv.IMessageReceiver;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.rmi.RemoteException;
 import java.util.Set;
 import java.util.Vector;
 
@@ -24,13 +23,14 @@ public class ChatGUI extends JFrame implements IMessageReceiver {
     private JComboBox   receiverChooser;
     private JTextArea   inputTextArea;
     private DSDVService dsdvService;
+    private String      ownAddress;
 
-    public ChatGUI(String ownAddress, DSDVService dsdvService) throws RemoteException {
-        super("JANEChat - You are " + ownAddress);
+    public ChatGUI(String ownAddress, DSDVService dsdvService) {
+        super("JANEChat - " + ownAddress);
+        this.ownAddress = ownAddress;
         this.dsdvService = dsdvService;
-        chatHandler = new ChatHandler();
-        chatHandler.addMessageReceiver(this);
-        chatHandler.setOwnAddress(ownAddress);
+        chatHandler = new ChatHandler(dsdvService);
+        dsdvService.setMessageReceiver(this);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         setSize(500, 400);
@@ -50,7 +50,7 @@ public class ChatGUI extends JFrame implements IMessageReceiver {
         refresh.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Vector<String> devices = getReachableDevices();
+                Vector devices = getReachableDevices();
                 receiverChooser.setModel(new DefaultComboBoxModel(devices));
                 repaint();
                 System.out.println("Reachable Devices updated.");
@@ -75,7 +75,9 @@ public class ChatGUI extends JFrame implements IMessageReceiver {
             @Override
             public void actionPerformed(ActionEvent e) {
                 chatLog.append("You: " + inputTextArea.getText() + "\n");
-                chatHandler.sendMessage((String) receiverChooser.getSelectedItem(), inputTextArea.getText());
+                chatHandler.sendMessage(ChatGUI.this.ownAddress, (String) receiverChooser.getSelectedItem(),
+                                        inputTextArea.getText());
+
                 inputTextArea.setText("");
             }
         });
@@ -83,11 +85,11 @@ public class ChatGUI extends JFrame implements IMessageReceiver {
         add(inputPanel, BorderLayout.SOUTH);
     }
 
-    private Vector<String> getReachableDevices() {
-        Vector<String> devices = new Vector<String>();
-        Set<Address> reachables = dsdvService.getAllReachableDevices();
-        for (Address a : reachables) {
-            devices.add(a.toString());
+    private Vector getReachableDevices() {
+        Vector devices = new Vector();
+        Set reachables = dsdvService.getAllReachableDevices();
+        for (Object a : reachables) {
+            devices.add(a);
         }
         return devices;
     }
