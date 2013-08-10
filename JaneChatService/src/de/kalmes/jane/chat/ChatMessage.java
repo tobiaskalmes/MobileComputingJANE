@@ -40,7 +40,7 @@ public class ChatMessage implements LinkLayerMessage {
 
     @Override
     public Class getReceiverServiceClass() {
-        return ChatMessage.class;
+        return ChatService.class;
     }
 
     @Override
