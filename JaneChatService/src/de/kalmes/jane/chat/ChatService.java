@@ -7,6 +7,7 @@ import de.uni_trier.jane.basetypes.Address;
 import de.uni_trier.jane.basetypes.ServiceID;
 import de.uni_trier.jane.service.EndpointClassID;
 import de.uni_trier.jane.service.RuntimeService;
+import de.uni_trier.jane.service.neighbor_discovery.NeighborDiscoveryService;
 import de.uni_trier.jane.service.network.link_layer.LinkLayer_async;
 import de.uni_trier.jane.service.operatingSystem.RuntimeOperatingSystem;
 import de.uni_trier.jane.service.parameter.todo.Parameters;
@@ -22,14 +23,16 @@ import de.uni_trier.jane.visualization.shapes.Shape;
 public class ChatService implements RuntimeService {
     public static ServiceID              serviceID;
     private       ServiceID              linkLayerID;
+    private       ServiceID              neighborID;
     private       LinkLayer_async        linkLayer;
     private       RuntimeOperatingSystem runtimeOperatingSystem;
     private       IMessageReceiver       messageReceiver;
     private       DSDVService            dsdvService;
 
-    public ChatService(ServiceID linkLayerID, DSDVService dsdvService) {
+    public ChatService(ServiceID linkLayerID, ServiceID neighborID, DSDVService dsdvService) {
         super();
         this.dsdvService = dsdvService;
+        this.neighborID = neighborID;
         serviceID = new EndpointClassID(ChatService.class.getName());
         this.linkLayerID = linkLayerID;
     }
@@ -43,6 +46,8 @@ public class ChatService implements RuntimeService {
         this.runtimeOperatingSystem = runtimeOperatingSystem;
         linkLayer = (LinkLayer_async) runtimeOperatingSystem.getSignalListenerStub(linkLayerID, LinkLayer_async.class);
         runtimeOperatingSystem.registerAtService(linkLayerID, LinkLayer_async.class);
+        runtimeOperatingSystem.registerAtService(neighborID,
+                                                 NeighborDiscoveryService.class);
     }
 
     @Override

@@ -66,7 +66,7 @@ public class PlatformTest extends ExecutionPlatform2 {
         DSDVService dsdvService = new DSDVService(linkLayerID, neighborID);
         serviceUnit.addService(dsdvService);
 
-        ChatService chatService = new ChatService(linkLayerID, dsdvService);
+        ChatService chatService = new ChatService(linkLayerID, neighborID, dsdvService);
         serviceUnit.addService(chatService);
 
         try {
