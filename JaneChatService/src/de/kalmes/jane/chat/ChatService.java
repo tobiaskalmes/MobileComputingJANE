@@ -84,7 +84,6 @@ public class ChatService implements RuntimeService {
         Address nextHop = dsdvService.getNextHop(receiver);
         if (nextHop != null) {
             linkLayer.sendUnicast(nextHop, new ChatMessage(sender, receiver, message));
-            //linkLayer.sendUnicast(nextHop, new DSDVMessage(new DSDVEntry(nextHop, nextHop, 224976234)));
             System.out.println("Send message to " + nextHop.toString());
         } else {
             System.out.println("No next Hop!");

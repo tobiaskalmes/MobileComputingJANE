@@ -32,6 +32,7 @@ public class ChatGUI extends JFrame implements IMessageReceiver {
         this.chatService = chatService;
         this.dsdvService = dsdvService;
         chatHandler = new ChatHandler(chatService);
+        chatService.setMessageReceiver(this);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         setSize(500, 400);
