@@ -107,6 +107,7 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
 
         //Eigenes Beacon setzen
         //neighborService.setOwnData(new TestBeacon(beacon));
+        System.out.println("DSDVService started!");
     }
 
     @Override
