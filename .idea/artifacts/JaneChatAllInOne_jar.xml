@@ -1,8 +1,8 @@
 <component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="JaneChat:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/JaneChat_jar</output-path>
-    <root id="archive" name="JaneChat.jar">
-      <element id="module-output" name="JaneChat" />
+  <artifact type="jar" name="JaneChatAllInOne:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/JaneChatAllInOne_jar</output-path>
+    <root id="archive" name="JaneChatAllInOne.jar">
+      <element id="module-output" name="JaneChatAllInOne" />
       <element id="module-output" name="JANE_Base" />
       <element id="module-output" name="JANE_Hybrid" />
       <element id="module-output" name="JANE_Platform" />
@@ -12,10 +12,9 @@
       <element id="module-output" name="JANE_Simulation" />
       <element id="module-output" name="JANE_SimulationServices" />
       <element id="module-output" name="JANE_Tools" />
-      <element id="module-output" name="JaneDSDV" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/JANE_PlatformServices/jakarta-regexp-1.2.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/JANE_Base/randomElement.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/JANE_Base/randomx.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/JANE_Base/randomElement.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/JANE_PlatformServices/jakarta-regexp-1.2.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
