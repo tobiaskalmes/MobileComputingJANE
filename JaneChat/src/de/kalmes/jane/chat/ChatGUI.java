@@ -18,7 +18,6 @@ import java.util.Vector;
  * To change this template use File | Settings | File Templates.
  */
 public class ChatGUI extends JFrame implements IMessageReceiver {
-    private ChatHandler chatHandler;
     private JTextArea   chatLog;
     private JComboBox   receiverChooser;
     private JTextArea   inputTextArea;
@@ -31,7 +30,6 @@ public class ChatGUI extends JFrame implements IMessageReceiver {
         this.ownAddress = ownAddress;
         this.chatService = chatService;
         this.dsdvService = dsdvService;
-        chatHandler = new ChatHandler(chatService);
         chatService.setMessageReceiver(this);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -77,8 +75,9 @@ public class ChatGUI extends JFrame implements IMessageReceiver {
             @Override
             public void actionPerformed(ActionEvent e) {
                 chatLog.append("You: " + inputTextArea.getText() + "\n");
-                chatHandler.sendMessage(ChatGUI.this.ownAddress, (String) receiverChooser.getSelectedItem(),
-                                        inputTextArea.getText());
+                ChatGUI.this.chatService.sendMessage(ChatGUI.this.ownAddress,
+                                                     (String) receiverChooser.getSelectedItem(),
+                                                     inputTextArea.getText());
 
                 inputTextArea.setText("");
             }
