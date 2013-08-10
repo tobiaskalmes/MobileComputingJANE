@@ -14,6 +14,7 @@
       <module fileurl="file://$PROJECT_DIR$/JANE_Tools/JANE_Tools.iml" filepath="$PROJECT_DIR$/JANE_Tools/JANE_Tools.iml" />
       <module fileurl="file://$PROJECT_DIR$/Jane/Jane.iml" filepath="$PROJECT_DIR$/Jane/Jane.iml" />
       <module fileurl="file://$PROJECT_DIR$/JaneChat/JaneChat.iml" filepath="$PROJECT_DIR$/JaneChat/JaneChat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JaneChatService/JaneChatService.iml" filepath="$PROJECT_DIR$/JaneChatService/JaneChatService.iml" />
       <module fileurl="file://$PROJECT_DIR$/JaneDSDV/JaneDSDV.iml" filepath="$PROJECT_DIR$/JaneDSDV/JaneDSDV.iml" />
       <module fileurl="file://$PROJECT_DIR$/JaneHTW/JaneHTW.iml" filepath="$PROJECT_DIR$/JaneHTW/JaneHTW.iml" />
       <module fileurl="file://$PROJECT_DIR$/JaneTwoHop/JaneTwoHop.iml" filepath="$PROJECT_DIR$/JaneTwoHop/JaneTwoHop.iml" />

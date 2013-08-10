@@ -22,15 +22,16 @@ public class ChatGUI extends JFrame implements IMessageReceiver {
     private JTextArea   chatLog;
     private JComboBox   receiverChooser;
     private JTextArea   inputTextArea;
+    private ChatService chatService;
     private DSDVService dsdvService;
     private String      ownAddress;
 
-    public ChatGUI(String ownAddress, DSDVService dsdvService) {
+    public ChatGUI(String ownAddress, ChatService chatService, DSDVService dsdvService) {
         super("JANEChat - " + ownAddress);
         this.ownAddress = ownAddress;
+        this.chatService = chatService;
         this.dsdvService = dsdvService;
-        chatHandler = new ChatHandler(dsdvService);
-        dsdvService.setMessageReceiver(this);
+        chatHandler = new ChatHandler(chatService);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         setSize(500, 400);

@@ -66,8 +66,11 @@ public class PlatformTest extends ExecutionPlatform2 {
         DSDVService dsdvService = new DSDVService(linkLayerID, neighborID);
         serviceUnit.addService(dsdvService);
 
+        ChatService chatService = new ChatService(linkLayerID, dsdvService);
+        serviceUnit.addService(chatService);
+
         try {
-            ChatGUI chatGUI = new ChatGUI(network.getNetworkAddress().toString(), dsdvService);
+            ChatGUI chatGUI = new ChatGUI(network.getNetworkAddress().toString(), chatService, dsdvService);
             chatGUI.setVisible(true);
         }
         catch (Exception e) {

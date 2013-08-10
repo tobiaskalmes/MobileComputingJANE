@@ -16,9 +16,8 @@
     <orderEntry type="module" module-name="JANE_Simulation" />
     <orderEntry type="module" module-name="JANE_SimulationServices" />
     <orderEntry type="module" module-name="JANE_Tools" />
-    <orderEntry type="module" module-name="JaneDSDV" />
     <orderEntry type="module" module-name="RemoteSystemsTempFiles" />
-    <orderEntry type="module" module-name="JaneChatService" />
+    <orderEntry type="module" module-name="JaneDSDV" />
   </component>
 </module>
 

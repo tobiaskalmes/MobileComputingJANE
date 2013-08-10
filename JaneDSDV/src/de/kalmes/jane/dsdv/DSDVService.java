@@ -37,7 +37,6 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
     private       int                           sequenceNumber;
     private       List                          routingTable;
     private       Thread                        periodicUpdates;
-    private       IMessageReceiver              messageReceiver;
 
     public DSDVService(ServiceID linkLayerID, ServiceID neighborID) {
         super();
@@ -72,10 +71,6 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
             }
         };
         periodicUpdates.start();
-    }
-
-    public void setMessageReceiver(IMessageReceiver messageReceiver) {
-        this.messageReceiver = messageReceiver;
     }
 
     @Override
@@ -167,39 +162,6 @@ public class DSDVService implements RuntimeService, NeighborDiscoveryListener {
                     }
                 }
             }
-        }
-    }
-
-    public void handleMessage(Address sender, ChatMessage message) {
-        if (message.getReceiver().equals(runtimeOperatingSystem.toString())) {
-            //message for you
-            messageReceiver.receiveMessage(message.getSender(), message.getMessage());
-            System.out.println("Received message for me.");
-        } else {
-            //send to next hop
-            sendMessage(message);
-            System.out.println("Received message for someone else.");
-        }
-    }
-
-    public void sendMessage(String sender, String receiver, String message) {
-        Address nextHop = getNextHop(receiver);
-        if (nextHop != null) {
-            linkLayer.sendUnicast(nextHop, new ChatMessage(sender, receiver, message));
-            //linkLayer.sendUnicast(nextHop, new DSDVMessage(new DSDVEntry(nextHop, nextHop, 224976234)));
-            System.out.println("Send message to " + nextHop.toString());
-        } else {
-            System.out.println("No next Hop!");
-        }
-    }
-
-    public void sendMessage(ChatMessage message) {
-        Address nextHop = getNextHop(message.getReceiver());
-        if (nextHop != null) {
-            linkLayer.sendUnicast(nextHop, message);
-            System.out.println("Send message to " + nextHop.toString());
-        } else {
-            System.out.println("No next Hop!");
         }
     }
 

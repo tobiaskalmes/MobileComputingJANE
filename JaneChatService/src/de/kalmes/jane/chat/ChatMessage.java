@@ -1,4 +1,4 @@
-package de.kalmes.jane.dsdv;
+package de.kalmes.jane.chat;
 
 import de.uni_trier.jane.basetypes.Dispatchable;
 import de.uni_trier.jane.basetypes.Extent;
@@ -30,7 +30,7 @@ public class ChatMessage implements LinkLayerMessage {
 
     @Override
     public void handle(LinkLayerInfo info, SignalListener listener) {
-        ((DSDVService) listener).handleMessage(info.getSender(), this);
+        ((ChatService) listener).handleMessage(info.getSender(), this);
     }
 
     @Override

@@ -1,7 +1,5 @@
 package de.kalmes.jane.chat;
 
-import de.kalmes.jane.dsdv.DSDVService;
-
 /**
  * Created with IntelliJ IDEA.
  * User: Tobias
@@ -10,14 +8,14 @@ import de.kalmes.jane.dsdv.DSDVService;
  * To change this template use File | Settings | File Templates.
  */
 public class ChatHandler implements IChatHandler {
-    private DSDVService dsdvService;
+    private ChatService chatService;
 
-    public ChatHandler(DSDVService dsdvService) {
-        this.dsdvService = dsdvService;
+    public ChatHandler(ChatService chatService) {
+        this.chatService = chatService;
     }
 
     @Override
     public void sendMessage(String sender, String receiver, String message) {
-        dsdvService.sendMessage(sender, receiver, message);
+        chatService.sendMessage(sender, receiver, message);
     }
 }
