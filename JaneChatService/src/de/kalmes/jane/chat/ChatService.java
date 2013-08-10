@@ -33,8 +33,8 @@ public class ChatService implements RuntimeService {
         super();
         this.dsdvService = dsdvService;
         this.neighborID = neighborID;
-        serviceID = new EndpointClassID(ChatService.class.getName());
         this.linkLayerID = linkLayerID;
+        serviceID = new EndpointClassID(ChatService.class.getName());
     }
 
     public void setMessageReceiver(IMessageReceiver messageReceiver) {
@@ -46,8 +46,8 @@ public class ChatService implements RuntimeService {
         this.runtimeOperatingSystem = runtimeOperatingSystem;
         linkLayer = (LinkLayer_async) runtimeOperatingSystem.getSignalListenerStub(linkLayerID, LinkLayer_async.class);
         runtimeOperatingSystem.registerAtService(linkLayerID, LinkLayer_async.class);
-        runtimeOperatingSystem.registerAtService(neighborID,
-                                                 NeighborDiscoveryService.class);
+        runtimeOperatingSystem.registerAtService(neighborID, NeighborDiscoveryService.class);
+        System.out.println("ChatService started!");
     }
 
     @Override
